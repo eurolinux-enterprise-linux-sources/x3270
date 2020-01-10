@@ -7,8 +7,8 @@
 
 Summary: An X Window System based IBM 3278/3279 terminal emulator
 Name: x3270
-Version: 3.3.6
-Release: 10.7%{?dist}
+Version: 3.3.15
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://www.geocities.com/SiliconValley/Peaks/7814
@@ -17,12 +17,11 @@ Source1: http://x3270.bgp.nu/download/c3270-%{version}.tgz
 Source2: x3270.png
 Source3: x3270.desktop
 Patch0: x3270-3.3.6-redhat.patch
-Patch1: c3270-332-ncursesw.patch
 Patch2: x3270-3.3-syntax.patch
-Patch4: x3270-3.3.6-resize.patch
 Patch5: x3270-3.3.6-tinfo.patch
-Patch6: x3270-3.3.6-script.patch
-Patch7: x3270-3.3.6-pfkeys.patch
+Patch8: x3270-3.3.15-typos.patch
+Patch9: c3270-3.3.15-typos.patch
+Patch10: x3270-3.3.15-covscan.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: ncurses-devel readline-devel glibc-devel openssl-devel libtool
 BuildRequires: perl fontconfig
@@ -75,12 +74,11 @@ Install the %{name}-text package if you need to access IBM hosts using an IBM
 %prep
 %setup -q -n x3270-3.3 -a 1
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
-%patch4 -p1
 %patch5 -p1
-%patch6
-%patch7
+%patch8 -p1
+%patch9
+%patch10 -p1
 
 %build
 # Set LIBX3270DIR to something we can share with x3270-text
@@ -108,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 mkdir -p $RPM_BUILD_ROOT%{_prefix}/bin
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/x3270
-mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
+mkdir -p $RPM_BUILD_ROOT%{_mandir}/man5
 mkdir -p ${RPM_BUILD_ROOT}%{fontdir}
 mkdir -p ${RPM_BUILD_ROOT}/%{_datadir}/icons/hicolor/48x48/apps
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/X11/app-defaults
@@ -119,12 +117,10 @@ install -m755 x3270 $RPM_BUILD_ROOT%{_prefix}/bin
 install -m755 x3270if $RPM_BUILD_ROOT%{_prefix}/bin
 install -m644 *pcf.gz $RPM_BUILD_ROOT%{fontdir}
 install -m644 ibm_hosts $RPM_BUILD_ROOT%{_sysconfdir}/
-install -m755 pr3287/pr3287 $RPM_BUILD_ROOT%{_prefix}/bin
-install -m644 pr3287/pr3287.man $RPM_BUILD_ROOT%{_mandir}/man1/pr3287.1x
 cd c3270-3.3
 install -m755 c3270 $RPM_BUILD_ROOT%{_prefix}/bin
 for i in c3270 x3270if x3270-script ibm_hosts; do
-    install -m644 $i.man $RPM_BUILD_ROOT%{_mandir}/man1/$i.1
+    install -m644 $i.man $RPM_BUILD_ROOT%{_mandir}/man5/$i.5
 done
 cd ..
 
@@ -171,10 +167,9 @@ fi
 %files
 %defattr(-,root,root)
 %doc README LICENSE Examples html
-%{_prefix}/bin/pr3287
 %{_prefix}/bin/x3270if
-%exclude %{_mandir}/man1/c3270*
-%{_mandir}/man1/*
+%exclude %{_mandir}/man5/c3270*
+%{_mandir}/man5/*
 %dir %{_datadir}/x3270
 %config(noreplace) %{_sysconfdir}/ibm_hosts
 
@@ -197,9 +192,22 @@ fi
 %defattr(-,root,root)
 %doc LICENSE
 %{_prefix}/bin/c3270
-%{_mandir}/man1/c3270*
+%{_mandir}/man5/c3270*
 
 %changelog
+* Tue Dec 15 2015 Samantha N. Bueno <sbueno@redhat.com> 3.3.15-2
+- add patch to fix some covscan issues
+- Related: rhbz#1171849
+
+* Fri Dec 04 2015 Samantha N. Bueno <sbueno@redhat.com> 3.3.15-1
+- rebase to 3.3.15 version
+- drop obsolete ncurses, pfkeys, resize, and script patches
+- modify a few other patches to apply cleanly to new version
+- Resolves: rhbz#1171849
+- add patch to fix some typos in man pages
+- change location of manpages to section 5
+- Resolves: rhbz#893912
+
 * Wed May 28 2014 Samantha N. Bueno <sbueno@redhat.com> 3.3.6-10.7
 - actually add the patches this time
 - Resolves: #961111

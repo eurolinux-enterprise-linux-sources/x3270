@@ -1,0 +1,48 @@
+diff -ur x3270-3.3-orig/ibm_hosts.man x3270-3.3/ibm_hosts.man
+--- x3270-3.3-orig/ibm_hosts.man	2015-12-04 15:06:26.383153953 -0500
++++ x3270-3.3/ibm_hosts.man	2015-12-04 14:48:25.909340040 -0500
+@@ -40,7 +40,7 @@
+ Finally, it can include a non-default \fIport\fP number, appended to the
+ \fIhostname\fP with a colon `:' character, e.g.,
+ \fBbluehost:97\fP.
+-(For compatability with earlier versions of \fIx3270\fP,
++(For compatibility with earlier versions of \fIx3270\fP,
+ the \fIport\fP can also be separated by a slash `/' character.)
+ .LP
+ The optional \fIactions\fP
+diff -ur x3270-3.3-orig/x3270if.man x3270-3.3/x3270if.man
+--- x3270-3.3-orig/x3270if.man	2015-12-04 15:06:26.390153887 -0500
++++ x3270-3.3/x3270if.man	2015-12-04 14:49:22.768804001 -0500
+@@ -26,7 +26,7 @@
+ .IP
+ \fIaction-name\fP(\fIparam\fP[,\fIparam\fP]...)
+ .LP
+-The parentheses are manatory, and usually must be quoted when \fBx3270if\fP is
++The parentheses are mandatory, and usually must be quoted when \fBx3270if\fP is
+ called from a shell script.
+ .LP
+ If any \fIparam\fP contains a space or comma, it must be surrounded by
+diff -ur x3270-3.3-orig/x3270.man x3270-3.3/x3270.man
+--- x3270-3.3-orig/x3270.man	2015-12-04 15:06:26.389153896 -0500
++++ x3270-3.3/x3270.man	2015-12-04 14:48:42.995178964 -0500
+@@ -70,7 +70,7 @@
+ This can be overridden with the \fB\-port\fP option, or by appending
+ a \fIport\fP to the \fIhostname\fP with a colon
+ `\fB:\fP'.
+-(For compatability with previous versions of \fBx3270\fP
++(For compatibility with previous versions of \fBx3270\fP
+ and with \fItn3270\fP(1), the \fIport\fP
+ may also be specified as a second, separate argument.)
+ 
+diff -ur x3270-3.3-orig/x3270-script.man x3270-3.3/x3270-script.man
+--- x3270-3.3-orig/x3270-script.man	2015-12-04 15:06:26.390153887 -0500
++++ x3270-3.3/x3270-script.man	2015-12-04 14:45:40.985894843 -0500
+@@ -156,7 +156,7 @@
+ this is zero.
+ .TP
+ 12 Command Execution Time
+-The time that it took for the host to respond to the previous commnd, in
++The time that it took for the host to respond to the previous command, in
+ seconds with milliseconds after the decimal.
+ If the previous command did not require a host response, this is a dash.
+ .SH "DIFFERENCES"

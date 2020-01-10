@@ -1,0 +1,55 @@
+diff -ur c3270-3.3-orig/c3270.man c3270-3.3/c3270.man
+--- c3270-3.3-orig/c3270.man	2015-12-04 15:01:50.945750619 -0500
++++ c3270-3.3/c3270.man	2015-12-04 15:03:03.509066534 -0500
+@@ -69,7 +69,7 @@
+ This can be overridden with the \fB\-port\fP option, or by appending
+ a \fIport\fP to the \fIhostname\fP with a colon
+ `\fB:\fP'.
+-(For compatability with previous versions of \fBc3270\fP
++(For compatibility with previous versions of \fBc3270\fP
+ and with \fItn3270\fP(1), the \fIport\fP
+ may also be specified as a second, separate argument.)
+ 
+diff -ur c3270-3.3-orig/ibm_hosts.man c3270-3.3/ibm_hosts.man
+--- c3270-3.3-orig/ibm_hosts.man	2015-12-04 15:01:50.944750628 -0500
++++ c3270-3.3/ibm_hosts.man	2015-12-04 15:03:15.799950662 -0500
+@@ -34,13 +34,13 @@
+ The \fIhostname\fP
+ can include `s:' or `p:' prefixes, e.g., \fBs:finicky\fP
+ (see the \fIx3270\fP(1) or
+-\fIc3270\fP(1) man page sfor details).
++\fIc3270\fP(1) man page s for details).
+ It can also include an LU name, separated by an `@' character, e.g.,
+ \fBoddlu@bluehost\fP.
+ Finally, it can include a non-default \fIport\fP number, appended to the
+ \fIhostname\fP with a colon `:' character, e.g.,
+ \fBbluehost:97\fP.
+-(For compatability with earlier versions of \fIx3270\fP,
++(For compatibility with earlier versions of \fIx3270\fP,
+ the \fIport\fP can also be separated by a slash `/' character.)
+ .LP
+ The optional \fIactions\fP
+diff -ur c3270-3.3-orig/x3270if.man c3270-3.3/x3270if.man
+--- c3270-3.3-orig/x3270if.man	2015-12-04 15:01:50.949750581 -0500
++++ c3270-3.3/x3270if.man	2015-12-04 15:05:36.864620785 -0500
+@@ -26,7 +26,7 @@
+ .IP
+ \fIaction-name\fP(\fIparam\fP[,\fIparam\fP]...)
+ .LP
+-The parentheses are manatory, and usually must be quoted when \fBx3270if\fP is
++The parentheses are mandatory, and usually must be quoted when \fBx3270if\fP is
+ called from a shell script.
+ .LP
+ If any \fIparam\fP contains a space or comma, it must be surrounded by
+diff -ur c3270-3.3-orig/x3270-script.man c3270-3.3/x3270-script.man
+--- c3270-3.3-orig/x3270-script.man	2015-12-04 15:01:50.949750581 -0500
++++ c3270-3.3/x3270-script.man	2015-12-04 15:03:51.915610184 -0500
+@@ -156,7 +156,7 @@
+ this is zero.
+ .TP
+ 12 Command Execution Time
+-The time that it took for the host to respond to the previous commnd, in
++The time that it took for the host to respond to the previous command, in
+ seconds with milliseconds after the decimal.
+ If the previous command did not require a host response, this is a dash.
+ .SH "DIFFERENCES"

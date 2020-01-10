@@ -1,0 +1,108 @@
+diff -ur x3270-3.3/c3270-3.3/macros.c x3270-3.3-rh/c3270-3.3/macros.c
+--- x3270-3.3/c3270-3.3/macros.c	2014-11-28 23:47:07.000000000 -0500
++++ x3270-3.3-rh/c3270-3.3/macros.c	2015-12-15 11:43:10.123980594 -0500
+@@ -1739,7 +1739,7 @@
+ 		    	strcat(text, "\n");
+ 
+ 		if (s->is_socket)
+-			send(s->infd, text, strlen(text), 0);
++			(void) send(s->infd, text, strlen(text), 0);
+ 		else
+ 			fprintf(s->outfile, "%s", text);
+ 		trace_script_output("%s", text);
+@@ -1792,7 +1792,7 @@
+ 
+ 				sprintf(text, "data: %.*s\n", nc, msg);
+ 			    	if (s->is_socket)
+-				    	send(s->infd, text, strlen(text), 0);
++				    	(void) send(s->infd, text, strlen(text), 0);
+ 				else
+ 					(void) fprintf(s->outfile, "%s", text);
+ 				trace_script_output("%s", text);
+@@ -2570,7 +2570,7 @@
+ 	Free(s);
+ 
+ 	if (sms->is_socket) {
+-	    	send(sms->infd, t, strlen(t), 0);
++	    	(void) send(sms->infd, t, strlen(t), 0);
+ 	} else {
+ 		(void) fprintf(sms->outfile, "%s", t);
+ 		(void) fflush(sms->outfile);
+diff -ur x3270-3.3/c3270-3.3/see.c x3270-3.3-rh/c3270-3.3/see.c
+--- x3270-3.3/c3270-3.3/see.c	2014-07-17 22:37:40.000000000 -0400
++++ x3270-3.3-rh/c3270-3.3/see.c	2015-12-15 12:01:18.925936889 -0500
+@@ -60,7 +60,7 @@
+ const char *
+ see_ebc(unsigned char ch)
+ {
+-	static char buf[8];
++	static char buf[16];
+ 	char mb[16];
+ 	ucs4_t uc;
+ 
+diff -ur x3270-3.3/c3270-3.3/util.c x3270-3.3-rh/c3270-3.3/util.c
+--- x3270-3.3/c3270-3.3/util.c	2014-07-17 22:37:40.000000000 -0400
++++ x3270-3.3-rh/c3270-3.3/util.c	2015-12-15 11:43:10.123980594 -0500
+@@ -141,7 +141,7 @@
+ 			if ((c & 0x7f) < ' ')
+ 				(void) fprintf(f, "\\%03o", c & 0xff);
+ 			else
+-				fputc(c, f);
++				(void) fputc(c, f);
+ 			break;
+ 		}
+ 	}
+diff -ur x3270-3.3/macros.c x3270-3.3-rh/macros.c
+--- x3270-3.3/macros.c	2014-11-28 23:47:07.000000000 -0500
++++ x3270-3.3-rh/macros.c	2015-12-15 11:38:49.663146678 -0500
+@@ -1739,7 +1739,7 @@
+ 		    	strcat(text, "\n");
+ 
+ 		if (s->is_socket)
+-			send(s->infd, text, strlen(text), 0);
++			(void) send(s->infd, text, strlen(text), 0);
+ 		else
+ 			fprintf(s->outfile, "%s", text);
+ 		trace_script_output("%s", text);
+@@ -1792,7 +1792,7 @@
+ 
+ 				sprintf(text, "data: %.*s\n", nc, msg);
+ 			    	if (s->is_socket)
+-				    	send(s->infd, text, strlen(text), 0);
++				    	(void) send(s->infd, text, strlen(text), 0);
+ 				else
+ 					(void) fprintf(s->outfile, "%s", text);
+ 				trace_script_output("%s", text);
+@@ -2570,7 +2570,7 @@
+ 	Free(s);
+ 
+ 	if (sms->is_socket) {
+-	    	send(sms->infd, t, strlen(t), 0);
++	    	(void) send(sms->infd, t, strlen(t), 0);
+ 	} else {
+ 		(void) fprintf(sms->outfile, "%s", t);
+ 		(void) fflush(sms->outfile);
+diff -ur x3270-3.3/see.c x3270-3.3-rh/see.c
+--- x3270-3.3/see.c	2015-12-15 11:42:28.588326019 -0500
++++ x3270-3.3-rh/see.c	2015-12-15 12:00:59.345099346 -0500
+@@ -60,7 +60,7 @@
+ const char *
+ see_ebc(unsigned char ch)
+ {
+-	static char buf[8];
++	static char buf[16];
+ 	char mb[16];
+ 	ucs4_t uc;
+ 
+diff -ur x3270-3.3/util.c x3270-3.3-rh/util.c
+--- x3270-3.3/util.c	2014-07-17 22:37:40.000000000 -0400
++++ x3270-3.3-rh/util.c	2015-12-15 11:30:07.088569671 -0500
+@@ -141,7 +141,7 @@
+ 			if ((c & 0x7f) < ' ')
+ 				(void) fprintf(f, "\\%03o", c & 0xff);
+ 			else
+-				fputc(c, f);
++				(void) fputc(c, f);
+ 			break;
+ 		}
+ 	}

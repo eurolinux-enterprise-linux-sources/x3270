@@ -1,15 +1,15 @@
 diff -urN x3270-3.3/3270ds.h x3270-3.3_new/3270ds.h
 --- x3270-3.3/3270ds.h	2004-07-05 21:22:04.000000000 +0200
 +++ x3270-3.3_new/3270ds.h	2005-01-13 11:58:38.716890528 +0100
-@@ -285,8 +285,10 @@
+@@ -330,8 +330,10 @@
  #define MINUS1	0xffffffffU
- 
+
  #define SET16(ptr, val) { \
--	*((ptr)++) = ((val) & MASK16) >> 8; \
--	*((ptr)++) = ((val) & MASK08); \
-+	*(ptr) = ((val) & MASK16) >> 8; \
+-	*((ptr)++) = (unsigned char)(((val) & MASK16) >> 8); \
+-	*((ptr)++) = (unsigned char)(((val) & MASK08)); \
++	*(ptr) = (unsigned char)(((val) & MASK16) >> 8); \
 +	(ptr)++; \
-+	*(ptr) = ((val) & MASK08); \
++	*(ptr) = (unsigned char)(((val) & MASK08)); \
 +	(ptr)++;  \
  }
  #define GET16(val, ptr) { \
