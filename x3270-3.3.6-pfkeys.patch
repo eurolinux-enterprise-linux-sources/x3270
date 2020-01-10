@@ -1,0 +1,60 @@
+# Patch #3 for x3270 3.3.6.  Allows shifted function keys to work properly
+# again.
+
+--- X3270.xad	2007/08/11 20:28:14	1.111
++++ X3270.xad	2007/08/13 15:59:54
+@@ -335,30 +335,30 @@
+ 	Shift<Key>Down:			KybdSelect(Down,PRIMARY)\n\
+ 	Shift<Key>Left:			KybdSelect(Left,PRIMARY)\n\
+ 	Shift<Key>Right:		KybdSelect(Right,PRIMARY)\n\
+-	:Shift<Key>F1:			PF(13)\n\
+-	:Shift<Key>F2:			PF(14)\n\
+-	:Shift<Key>F3:			PF(15)\n\
+-	:Shift<Key>F4:			PF(16)\n\
+-	:Shift<Key>F5:			PF(17)\n\
+-	:Shift<Key>F6:			PF(18)\n\
+-	:Shift<Key>F7:			PF(19)\n\
+-	:Shift<Key>F8:			PF(20)\n\
+-	:Shift<Key>F9:			PF(21)\n\
+-	:Shift<Key>F10:			PF(22)\n\
+-	:Shift<Key>F11:			PF(23)\n\
+-	:Shift<Key>F12:			PF(24)\n\
+-	:Meta<Key>F1:			PF(13)\n\
+-	:Meta<Key>F2:			PF(14)\n\
+-	:Meta<Key>F3:			PF(15)\n\
+-	:Meta<Key>F4:			PF(16)\n\
+-	:Meta<Key>F5:			PF(17)\n\
+-	:Meta<Key>F6:			PF(18)\n\
+-	:Meta<Key>F7:			PF(19)\n\
+-	:Meta<Key>F8:			PF(20)\n\
+-	:Meta<Key>F9:			PF(21)\n\
+-	:Meta<Key>F10:			PF(22)\n\
+-	:Meta<Key>F11:			PF(23)\n\
+-	:Meta<Key>F12:			PF(24)\n\
++	Shift<Key>F1:			PF(13)\n\
++	Shift<Key>F2:			PF(14)\n\
++	Shift<Key>F3:			PF(15)\n\
++	Shift<Key>F4:			PF(16)\n\
++	Shift<Key>F5:			PF(17)\n\
++	Shift<Key>F6:			PF(18)\n\
++	Shift<Key>F7:			PF(19)\n\
++	Shift<Key>F8:			PF(20)\n\
++	Shift<Key>F9:			PF(21)\n\
++	Shift<Key>F10:			PF(22)\n\
++	Shift<Key>F11:			PF(23)\n\
++	Shift<Key>F12:			PF(24)\n\
++	Meta<Key>F1:			PF(13)\n\
++	Meta<Key>F2:			PF(14)\n\
++	Meta<Key>F3:			PF(15)\n\
++	Meta<Key>F4:			PF(16)\n\
++	Meta<Key>F5:			PF(17)\n\
++	Meta<Key>F6:			PF(18)\n\
++	Meta<Key>F7:			PF(19)\n\
++	Meta<Key>F8:			PF(20)\n\
++	Meta<Key>F9:			PF(21)\n\
++	Meta<Key>F10:			PF(22)\n\
++	Meta<Key>F11:			PF(23)\n\
++	Meta<Key>F12:			PF(24)\n\
+ 	:<Key>F1:			PF(1)\n\
+ 	:<Key>F2:			PF(2)\n\
+ 	:<Key>F3:			PF(3)\n\

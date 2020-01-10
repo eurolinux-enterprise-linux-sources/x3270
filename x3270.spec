@@ -8,7 +8,7 @@
 Summary: An X Window System based IBM 3278/3279 terminal emulator
 Name: x3270
 Version: 3.3.6
-Release: 10.5%{?dist}
+Release: 10.7%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://www.geocities.com/SiliconValley/Peaks/7814
@@ -21,6 +21,8 @@ Patch1: c3270-332-ncursesw.patch
 Patch2: x3270-3.3-syntax.patch
 Patch4: x3270-3.3.6-resize.patch
 Patch5: x3270-3.3.6-tinfo.patch
+Patch6: x3270-3.3.6-script.patch
+Patch7: x3270-3.3.6-pfkeys.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: ncurses-devel readline-devel glibc-devel openssl-devel libtool
 BuildRequires: perl fontconfig
@@ -77,6 +79,8 @@ Install the %{name}-text package if you need to access IBM hosts using an IBM
 %patch2 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6
+%patch7
 
 %build
 # Set LIBX3270DIR to something we can share with x3270-text
@@ -196,6 +200,16 @@ fi
 %{_mandir}/man1/c3270*
 
 %changelog
+* Wed May 28 2014 Samantha N. Bueno <sbueno@redhat.com> 3.3.6-10.7
+- actually add the patches this time
+- Resolves: #961111
+- Resolves: #1070750
+
+* Tue May 20 2014 Samantha N. Bueno <sbueno@redhat.com> 3.3.6-10.6
+- backport patches to fix pfkeys and segfault issue
+- Resolves: #961111
+- Resolves: #1070750
+
 * Thu Sep 27 2012 Dan Horák <dhorak@redhat.com> 3.3.6-10.5
 - install the correct X resource file and build with ICU (#801139)
 - Resolves: #801139

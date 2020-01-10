@@ -1,0 +1,14 @@
+# Patch #2 for x3270 3.3.6.  Eliminates crashes and tight loops when x3270 is
+# run with the '-script' option.
+
+--- util.c	2007/02/17 22:36:36	1.24
++++ util.c	2007/08/01 21:34:20
+@@ -867,7 +867,7 @@
+ 		if (prev != NULL)
+ 			prev->next = iorec->next;
+ 		else
+-			iorecs->next = iorec->next;
++			iorecs = iorec->next;
+ 		XtFree((XtPointer)iorec);
+ 	}
+ }
