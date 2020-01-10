@@ -8,7 +8,7 @@
 Summary: An X Window System based IBM 3278/3279 terminal emulator
 Name: x3270
 Version: 3.3.6
-Release: 10.4%{?dist}
+Release: 10.5%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://www.geocities.com/SiliconValley/Peaks/7814
@@ -35,6 +35,7 @@ BuildRequires: xorg-x11-font-utils imake xorg-x11-xbitmaps
 BuildRequires: libXmu-devel libXaw-devel libXt-devel libICE-devel
 BuildRequires: libXext-devel libX11-devel libXpm-devel libSM-devel
 BuildRequires: libXt-devel
+BuildRequires: libicu-devel icu
 Requires: %{name} = %{version}
 Requires: gtk2 >= 2.6
 Requires(post): /usr/bin/mkfontdir
@@ -126,7 +127,7 @@ cd ..
 install -m644 %{SOURCE2} ${RPM_BUILD_ROOT}%{_datadir}/icons/hicolor/48x48/apps
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/X11/applnk/Utilities
 install -m644 %{SOURCE3} ${RPM_BUILD_ROOT}%{_sysconfdir}/X11/applnk/Utilities
-install -m644 X3270.xad ${RPM_BUILD_ROOT}%{_datadir}/X11/app-defaults/X3270
+install -m644 X3270.ad ${RPM_BUILD_ROOT}%{_datadir}/X11/app-defaults/X3270
 ln -sf %{fontdir} $RPM_BUILD_ROOT%{catalogue}/x3270
 
 %if %{desktop_file}
@@ -195,6 +196,10 @@ fi
 %{_mandir}/man1/c3270*
 
 %changelog
+* Thu Sep 27 2012 Dan Horák <dhorak@redhat.com> 3.3.6-10.5
+- install the correct X resource file and build with ICU (#801139)
+- Resolves: #801139
+
 * Wed Jun 30 2010 Karsten Hopp <karsten@redhat.com> 3.3.6-10.4
 - add buildrequirement fontconfig
 
