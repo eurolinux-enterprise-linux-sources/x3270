@@ -5,7 +5,7 @@
 Summary: An X Window System based IBM 3278/3279 terminal emulator
 Name: x3270
 Version: 3.3.12ga12
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://x3270.sourceforge.net/
@@ -189,6 +189,12 @@ fi
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 3.3.12ga12-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.3.12ga12-3
+- Mass rebuild 2013-12-27
+
 * Mon Mar 25 2013 Samantha N. Bueno <sbueno[at]redhat.com> - 3.3.12ga12-2
 - Rebuilt to include fix for #926737
 
